@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<!-- 页面编码 -->
+		<meta charset="UTF-8">
+		<!-- 响应式布局 -->
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<!-- Bootstrap样式文件 -->
+		<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<!-- 标签名称 -->
+		<title>Register</title>
+	</head>
+	<body class="container" style="margin-top: 10%;">
+		<div>
+			<div class="row">
+				<span class="text-center"><h1>Register</h1></span>
+			</div>
+			<div class="row">
+				<div class="col-sm-6 col-sm-offset-3">
+					<!-- 表单  水平表单-->
+					<form class="form-horizontal" method="post" action="register.jsp">
+						<!-- 电子邮件 has-feedback：反馈图标-->
+						<div class="form-group has-feedback">
+							<label class="col-sm-3 control-label" for="email">Email</label>
+							<div class="col-sm-9">
+								<input type="email" class="form-control" id="email" placeholder="Enter email" name = "email">
+								<span class=""></span>
+							</div>
+						</div>
+						<!-- 用户名 -->
+						<div class="form-group has-feedback">
+							<label class="col-sm-3 control-label" for="username">UserName</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="username" placeholder="Enter username" name = "username">
+								<span class=""></span>
+							</div>
+						</div>
+						<!-- 密码 -->
+						<div class="form-group has-feedback">
+							<label class="col-sm-3 control-label" for="password">PassWord</label>
+							<div class="col-sm-9">
+								<input type="password" class="form-control" id="password" placeholder="Enter password" name = "password">
+								<span class=""></span>
+							</div>
+						</div>
+						<!-- 功能按钮 -->
+						<p class="text-right">
+							<button id="btnSubmit" type="submit" class="btn btn-primary">
+								Submit
+							</button>
+							<button type="reset" class="btn btn-danger">
+								Reset
+							</button>
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<footer class="navbar-fixed-bottom text-center">
+			&copy; 2015x
+		</footer>
+						
+		<script>
+			function checkInput(txt){
+     //追加样式是先移除样式表后追加							
+				if(txt.val()==""){
+					txt.parent().parent()
+						.removeClass()//为空，出现一个x的小图标
+						.addClass("form-group has-error has-feedback");
+					txt.next().removeClass()
+						.addClass("glyphicon glyphicon-remove form-control-feedback");
+					return false;
+				}else{
+					txt.parent().parent()
+						.removeClass()//验证成功后出现一个对号的小图标
+						.addClass("form-group has-success has-feedback");
+					txt.next().removeClass()
+						.addClass("glyphicon glyphicon-ok form-control-feedback");
+					return true;
+				}
+			}
+			$(function(){
+			  //逐一的验证
+				$("#email").change(function(){checkInput($("#email"));});
+				$("#username").change(function(){checkInput($("#username"));});
+				$("#password").change(function(){checkInput($("#password"));});
+				
+				//提交按钮事件，false:不能提交，抑制提交按钮
+				$("#btnSubmit").click(function(){
+					if(checkInput($("#email")) && checkInput($("#username")) &&
+					checkInput($("#password"))){
+						return true;
+					}
+					return false;
+				});
+			});
+		</script>
+	</body>
+</html>
